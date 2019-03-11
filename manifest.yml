@@ -1,0 +1,4 @@
+---
+applications:
+- name: pal-tracker-AG
+  path: ./build/libs/pal-tracker.jar
