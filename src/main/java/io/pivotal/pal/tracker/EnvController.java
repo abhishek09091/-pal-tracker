@@ -10,33 +10,32 @@ import java.util.Map;
 @RestController
 public class EnvController {
 
-    private String PORT;
-    private String MEMORY_LIMIT;
-    private String CF_INSTANCE_INDEX;
-    private String CF_INSTANCE_ADDR;
+    private final String port;
+    private final String memoryLimit;
+    private final String cfInstanceIndex;
+    private final String cfInstanceAddress;
 
-    public EnvController(@Value("${cf.instance.index.port:NOT SET}") String port,
-                         @Value("${cf.instance.index.port.memory_limit:NOT SET}") String memoryLimit,
-                         @Value("${cf.instance.index.cf_instance_index:NOT SET}") String cfInstanceIndex,
-                         @Value("${cf.instance.index.cf_instance_addr:NOT SET}") String cfInstanceAddr){
-
-        this.PORT = port;
-        this.MEMORY_LIMIT = memoryLimit;
-        this.CF_INSTANCE_INDEX = cfInstanceIndex;
-        this.CF_INSTANCE_ADDR = cfInstanceAddr;
-
+    public EnvController(
+            @Value("${port:NOT SET}") String port,
+            @Value("${memory.limit:NOT SET}") String memoryLimit,
+            @Value("${cf.instance.index:NOT SET}") String cfInstanceIndex,
+            @Value("${cf.instance.addr:NOT SET}") String cfInstanceAddress
+    ) {
+        this.port = port;
+        this.memoryLimit = memoryLimit;
+        this.cfInstanceIndex = cfInstanceIndex;
+        this.cfInstanceAddress = cfInstanceAddress;
     }
 
     @GetMapping("/env")
-    public Map<String, String> getEnv(){
+    public Map<String, String> getEnv() {
+        Map<String, String> env = new HashMap<>();
 
-        Map<String,String> envMap = new HashMap<>();
-        envMap.put("PORT",PORT);
-        envMap.put("MEMORY_LIMIT",MEMORY_LIMIT);
-        envMap.put("CF_INSTANCE_INDEX",CF_INSTANCE_INDEX);
-        envMap.put("CF_INSTANCE_ADDR",CF_INSTANCE_ADDR);
+        env.put("PORT", port);
+        env.put("MEMORY_LIMIT", memoryLimit);
+        env.put("CF_INSTANCE_INDEX", cfInstanceIndex);
+        env.put("CF_INSTANCE_ADDR", cfInstanceAddress);
 
-        return envMap;
+        return env;
     }
-
 }
