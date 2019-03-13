@@ -11,15 +11,11 @@ import java.util.List;
 @RequestMapping("/time-entries")
 public class TimeEntryController {
 
-
     private TimeEntryRepository timeEntryRepository;
-
-
 
     public TimeEntryController(TimeEntryRepository timeEntryRepository) {
         this.timeEntryRepository = timeEntryRepository;
     }
-
 
     @PostMapping(produces= MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity create(@RequestBody TimeEntry timeEntryToCreate) {
@@ -54,7 +50,7 @@ public class TimeEntryController {
         return new ResponseEntity<List<TimeEntry>>(entries, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}", produces="application/json", consumes="application/json")
+    @PutMapping(value = "/{id}", produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity update(@PathVariable("id")long timeEntryId, @RequestBody TimeEntry expected) {
         TimeEntry timeEntry = timeEntryRepository.update(timeEntryId,expected);
 
