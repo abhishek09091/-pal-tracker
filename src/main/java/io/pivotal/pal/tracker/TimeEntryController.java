@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/time-entries")
 public class TimeEntryController {
 
 
@@ -20,7 +21,7 @@ public class TimeEntryController {
     }
 
 
-    @PostMapping(value = "/time-entries", produces= MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces= MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity create(@RequestBody TimeEntry timeEntryToCreate) {
 
        TimeEntry entry = timeEntryRepository.create(timeEntryToCreate);
@@ -31,7 +32,7 @@ public class TimeEntryController {
        return  new ResponseEntity(entry, HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/time-entries/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<TimeEntry> read(@PathVariable("id")long timeEntryId) {
 
         TimeEntry timeEntry = timeEntryRepository.find(timeEntryId);
@@ -43,7 +44,7 @@ public class TimeEntryController {
         return  new ResponseEntity<TimeEntry>(timeEntry, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/time-entries")
+    @GetMapping()
     public ResponseEntity<List<TimeEntry>> list() {
         List<TimeEntry> entries = timeEntryRepository.list();
         if(entries == null){
@@ -53,7 +54,7 @@ public class TimeEntryController {
         return new ResponseEntity<List<TimeEntry>>(entries, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/time-entries/{id}", produces="application/json", consumes="application/json")
+    @PutMapping(value = "/{id}", produces="application/json", consumes="application/json")
     public ResponseEntity update(@PathVariable("id")long timeEntryId, @RequestBody TimeEntry expected) {
         TimeEntry timeEntry = timeEntryRepository.update(timeEntryId,expected);
 
@@ -63,7 +64,7 @@ public class TimeEntryController {
         return  new ResponseEntity(timeEntry, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/time-entries/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<TimeEntry> delete(@PathVariable("id")long timeEntryId) {
 
          timeEntryRepository.delete(timeEntryId);
