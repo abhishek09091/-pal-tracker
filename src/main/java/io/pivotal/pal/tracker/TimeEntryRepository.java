@@ -1,6 +1,6 @@
 package io.pivotal.pal.tracker;
 
-import org.springframework.http.ResponseEntity;
+import io.pivotal.pal.tracker.model.TimeEntry;
 
 import java.util.List;
 

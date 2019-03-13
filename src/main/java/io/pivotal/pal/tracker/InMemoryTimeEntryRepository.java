@@ -1,6 +1,6 @@
 package io.pivotal.pal.tracker;
 
-import org.springframework.http.ResponseEntity;
+import io.pivotal.pal.tracker.model.TimeEntry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ public class InMemoryTimeEntryRepository implements TimeEntryRepository{
 
 
     private long currentTimeId = 0L;
-    private final Map<Long,TimeEntry> inMemoryDataBase = new HashMap<>();
+    private final Map<Long, TimeEntry> inMemoryDataBase = new HashMap<>();
 
     public TimeEntry create(TimeEntry timeEntry) {
         TimeEntry entry = new TimeEntry(++currentTimeId,timeEntry.getProjectId(),timeEntry.getUserId(),timeEntry.getDate(),timeEntry.getHours());

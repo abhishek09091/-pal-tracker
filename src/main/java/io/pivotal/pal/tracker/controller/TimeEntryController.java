@@ -1,5 +1,7 @@
-package io.pivotal.pal.tracker;
+package io.pivotal.pal.tracker.controller;
 
+import io.pivotal.pal.tracker.model.TimeEntry;
+import io.pivotal.pal.tracker.TimeEntryRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
