@@ -14,11 +14,9 @@ import java.util.Map;
 public class CustomInfoContributor implements InfoContributor {
 
 
-    @Value("${SPRING_DATASOURCE_URL}")
+    @Value("${SPRING_DATASOURCE_URL: custome url check}")
     private String dataSourceUrl;
 
-   // @Value("${VCAP_APPLICATION}")
-   // private String vcapApplication;
 
 
     @Override
